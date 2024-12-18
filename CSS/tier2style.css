@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+body {
+    font-family: 'Open Sans', sans-serif; 
+    font-style: normal; 
+    margin: 0; 
+    padding: 0; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+}
+.header {
+    background-image: url("../slideshow/blue-mountian.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #2300a3;
+    background-position: 50% 71%; 
+    height: auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+.header .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.header img {
+    height: 35px;
+    vertical-align: middle;
+    filter: brightness(110%);
+}
+.header h1 {
+    font-size: 35px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20px;
+}
+.navbar {
+    position: sticky;
+    z-index: 100;
+    background-color: #00274d; 
+    padding: 0.75rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: 2px solid #000000;
+}
+.navbar a:hover {
+    background-color: #0f6cc9; 
+}
+.main-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative; 
+    background-image: url("../slideshow/hiwassee.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/* Timeline container in the column */
+.education-timeline {
+    position: relative;
+    padding: 50px 0;
+    margin: 30px 0;
+}
+
+/* Timeline line down the middle */
+.education-timeline::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: #737373;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+/* Education container styling */
+.education-container {
+    position: relative;
+    width: 45%; /* Smaller width to fit within column */
+    padding: 10px;
+    background-color: #a2d5a7;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Position entries to left or right */
+.education-left {
+    float: left;
+    clear: right;
+    text-align: left;
+    margin-right: 10%;
+    left: 6px;
+}
+
+.education-right {
+    float: right;
+    clear: left;
+    text-align: left;
+    margin-left: 10%;
+    right: 4px;
+}
+
+/* Connect containers with a line */
+.education-left::after, .education-right::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #7afd90;
+    border: 2px solid #c4c4c4;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.education-left::after {
+    right: -15px;
+}
+
+.education-right::after {
+    left: -15px;
+}
+
+/* Title and description styling */
+.education-content h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.education-content p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Clear float after timeline entries */
+.education-timeline::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+ /* Timeline container for programs */
+ .program-timeline {
+    position: relative;
+    padding: 50px 0;
+    margin: 30px 0;
+}
+
+/* Timeline line down the middle */
+.program-timeline::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    background-color: #737373;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+/* Program container styling */
+.program-container {
+    position: relative;
+    width: 45%; /* Smaller width to fit within column */
+    padding: 10px;
+    background-color: #aee8e4;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Position entries to left or right */
+.program-left {
+    float: left;
+    clear: right;
+    text-align: left;
+    margin-right: 10%;
+    left: 6px;
+}
+
+.program-right {
+    float: right;
+    clear: left;
+    text-align: left;
+    margin-left: 10%;
+    right: 3px;
+}
+
+/* Connect containers with a line */
+.program-left::after, .program-right::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #aee8e4;
+    border: 2px solid #c4c4c4;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.program-left::after {
+    right: -15px;
+}
+
+.program-right::after {
+    left: -15px;
+}
+
+/* Title and description styling */
+.program-content h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.program-content p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Clear float after timeline entries */
+.program-timeline::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+card img {
+    width: 100px; /* Fixed width for logos */
+    height: auto;
+}
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #0033a0; 
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+}
+.card {
+    min-height: 650px;
+    margin-bottom: 20px; 
+    /*background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px); */
+    border: 1px solid black; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px black; 
+    padding: 20px; 
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for professional look */
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        #progressBar {
+            transition: width 0.5s ease;  /* Smooth transition for width */
+            background-color: blue;  /* Make sure the progress bar is blue */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Admin Dashboard</h1>
+
+        <!-- Fetch EPA Data Section -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Fetch EPA Data</h5>
+                <p class="card-text">Enter the year to fetch and store data from the EPA database. Check the console for progress!</p>
+                <form id="fetch-epa-form">
+                    <div class="mb-3">
+                        <label for="epaYear" class="form-label">Year</label>
+                        <input type="number" class="form-control" id="epaYear" name="year" placeholder="Enter year (e.g., 2024)" required>
+                    </div>
+                    <button id="btnFetchData" type="submit" class="btn btn-success">Fetch Data</button>
+                </form>
+                <!-- Progress Bar -->
+                <div class="progress mt-3" id="progressBarContainer" style="display: none;">
+                    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Document Tier Data Section -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Document Tier Data</h5>
+                <form id="document-tier-form">
+                    <div class="mb-3">
+                        <label for="tier" class="form-label">Tier</label>
+                        <select class="form-select" id="tier" name="tier" required>
+                            <option value="" disabled selected>Select Tier</option>
+                            <option value="1">Tier 1</option>
+                            <option value="2">Tier 2</option>
+                            <option value="3">Tier 3</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sector" class="form-label">Sector</label>
+                        <select class="form-select" id="sector" name="sector" required>
+                            <option value="" disabled selected>Select a sector</option>
+                            <option value="agriculture_sector">Agriculture Sector</option>
+                            <option value="municipal_wastewater_sector">Municipal Wastewater Sector</option>
+                            <option value="urban_stormwater_sector">Urban Stormwater Sector</option>
+                            <option value="nature_based_solutions">Nature-Based Solutions</option>
+                            <option value="general_nutrients">General Nutrients</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="metric" class="form-label">Metric</label>
+                        <input type="text" class="form-control" id="metric" name="metric" placeholder="Enter metric" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="info" class="form-label">Additional Information</label>
+                        <textarea class="form-control" id="info" name="info" rows="3" placeholder="Enter any relevant information" required></textarea>
+                    </div>
+                    <button id="btnSaveTierData" type="submit" class="btn btn-primary">Save Tier Data</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- View EPA Data by Year Section -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">View EPA Data by Year</h5>
+                <form id="view-year-data">
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Year</label>
+                        <input type="number" class="form-control" id="year" name="year" placeholder="Enter year (e.g., 2024)" required>
+                    </div>
+                    <button id="btnViewData" type="submit" class="btn btn-info">View Data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download EPA Data Section (by year or all) -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Download EPA Data</h5>
+            <form id="download-data-form">
+                <div class="mb-3">
+                    <label for="year" class="form-label">Year</label>
+                    <input type="number" class="form-control" id="EPAyear" name="year" placeholder="Enter year (e.g., 2024)" required>
+                </div>
+                <button id="btnDownloadData" type="submit" class="btn btn-warning">Download EPA ECHO Data</button>
+            </form>
+            <button id="btnDownloadAllData" type="submit" class="btn btn-warning">Download All EPA ECHO Data</button>
+        </div>
+    </div>
+
+    </div>
+    <!-- Bootstrap, SweetAlert, and JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('authToken');
+
+            //Redirect if no valid session
+            if (!token) {
+                Swal.fire({
+                    title: "Session expired",
+                    text: "Please log in as an admin.",
+                    icon: "warning",
+                }).then(() => {
+                    window.location.href = './Loginpage.html';
+                });
+                return;
+            }
+            
+    
+            // Verify token
+            try {
+                const response = await fetch('https://tnd.tntech.edu/api/verify-token', {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+                if (!response.ok) throw new Error('Invalid token');
+            } catch (error) {
+                console.error('Session verification error:', error);
+                localStorage.removeItem('authToken');
+                Swal.fire({
+                    title: "Session expired",
+                    text: "Please log in again.",
+                    icon: "warning",
+                }).then(() => {
+                    window.location.href = './Loginpage.html';
+                });
+                return;
+            }
+        });
+    
+        document.getElementById('fetch-epa-form').addEventListener('submit', (e) => {
+            e.preventDefault();  // Prevent form submission
+        
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                Swal.fire('Error', 'You are not logged in. Please log in and try again.', 'error');
+                return;
+            }
+        
+            const year = document.getElementById('epaYear').value;
+            const progressBar = document.getElementById('progressBar');  // Targeting the Bootstrap progress bar
+            const progressBarContainer = document.getElementById('progressBarContainer');
+        
+            // Show the progress bar when the form is submitted
+            progressBarContainer.style.display = 'block';  // Show progress bar
+            progressBar.style.width = '0%';  // Reset progress bar width to 0 initially
+        
+            const eventSourceUrl = ` https://tnd.tntech.edu/api/nutrient-data?year=${year}&token=${token}`;
+            console.log('EventSource URL:', eventSourceUrl);
+            const eventSource = new EventSource(eventSourceUrl);
+        
+            eventSource.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                console.log('Received data:', data);  // Debugging log
+        
+                if (data.progress) {
+                    // Convert progress to a number and update the progress bar width
+                    const progress = parseFloat(data.progress);  // Make sure the progress is a valid number
+        
+                    // Update the width of the progress bar
+                    progressBar.style.width = `${progress}%`;
+                    progressBar.setAttribute('aria-valuenow', progress);
+                    console.log(`Progress bar updated: ${progress}%`);  // Debugging log
+                }
+        
+                if (data.message) {
+                    Swal.fire('Success', data.message, 'success');
+                    progressBarContainer.style.display = 'none';  // Hide progress bar when done
+                    eventSource.close(); // Close the connection
+                }
+        
+                if (data.error) {
+                    Swal.fire('Error', data.error, 'error');
+                    progressBarContainer.style.display = 'none';  // Hide progress bar
+                    eventSource.close(); // Close the connection
+                }
+            };
+        
+            eventSource.onerror = () => {
+                Swal.fire('Error', 'Connection lost or server error.', 'error');
+                progressBarContainer.style.display = 'none';
+                eventSource.close(); // Close the connection
+            };
+        });
+        
+        
+         
+        //Document Tier Data
+        document.getElementById('document-tier-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const token = localStorage.getItem('authToken');
+
+            if (!token) {
+                Swal.fire('Error', 'You are not logged in. Please log in and try again.', 'error');
+                return;
+            }
+            // Collect form data
+            const formData = {
+                tier: document.getElementById('tier').value,
+                sector: document.getElementById('sector').value,
+                metric: document.getElementById('metric').value,
+                info: document.getElementById('info').value,
+            };
+
+            // Validate form data before sending the request
+            if (!formData.tier || !formData.sector || !formData.metric || !formData.info) {
+                Swal.fire('Validation Error', 'All fields are required.', 'error');
+                return;
+            }
+
+            try {
+                // Make POST request
+                const response = await fetch('https://tnd.tntech.edu/api/document-tier-data', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                // Handle server response
+                if (response.ok) {
+                    Swal.fire('Success', result.message, 'success');
+                } else {
+                    Swal.fire('Error', result.error || 'An error occurred.', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving tier data:', error);
+                Swal.fire('Error', 'Failed to save tier data. Please try again later.', 'error');
+            }
+        });
+
+        //View EPA Data by Year
+        document.getElementById('view-year-data').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            //collect form data here
+            const year = document.getElementById('year').value;
+            const token = localStorage.getItem('authToken');
+
+            //form validation
+            if (!year) {
+                Swal.fire('Error', 'Please enter a valid year.', 'error');
+                return;
+            }
+
+            if (!token) {
+                Swal.fire('Error', 'You are not logged in. Please log in and try again.', 'error');
+                return;
+            }
+            //Making a request to the backend
+            try {
+                const response = await fetch(`https://tnd.tntech.edu/api/grab-db-data?year=${year}`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (Array.isArray(data) && data.length > 0) {
+                        //Building a table dynamically
+                        const tableHtml = `
+                            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead>
+                                    <tr>
+                                        ${Object.keys(data[0]).map(key => `<th style="border-bottom: 1px solid #ddd; padding: 8px;">${key}</th>`).join('')}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${data.map(row => `
+                                        <tr>
+                                            ${Object.values(row).map(value => `<td style="padding: 8px; border-bottom: 1px solid #ddd;">${value}</td>`).join('')}
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        `;
+
+                        //Display the table inside SweetAlert2
+                        Swal.fire({
+                            title: `Data for Year ${year}`,
+                            html: tableHtml,
+                            width: '80%',
+                            customClass: {
+                                popup: 'swal2-popup-custom',
+                            },
+                        });
+                    } else {
+                        Swal.fire('Info', 'No data available for the selected year.', 'info');
+                    }
+                } else {
+                    Swal.fire('Error', data.error || 'Failed to fetch data.', 'error');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                Swal.fire('Error', 'Failed to fetch data.', 'error');
+            }
+        });
+
+        
+        // Download EPA data by year
+        $('#btnDownloadData').on('click', async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const year = document.getElementById('EPAyear').value;
+            const token = localStorage.getItem('authToken'); // Get the token from localStorage
+
+            if (!year || isNaN(year)) {
+                Swal.fire('Error', 'Please enter a valid year.', 'error');
+                return;
+            }
+
+            if (!token) {
+                Swal.fire('Error', 'You are not logged in. Please log in and try again.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://tnd.tntech.edu/api/download-data?year=${year}`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+
+                if (response.ok) {
+                    const contentType = response.headers.get('Content-Type');
+
+                    // Check if the response is CSV
+                    if (contentType && contentType.includes('text/csv')) {
+                        const blob = await response.blob();
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = `data_${year}.csv`; // Set the file name
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        Swal.fire('Success', 'CSV file downloaded successfully!', 'success');
+                    } else {
+                        // Handle non-CSV responses
+                        const errorText = await response.text();
+                        Swal.fire('Error', `Expected CSV but received: ${errorText}`, 'error');
+                    }
+                } else {
+                    // Handle error responses
+                    let errorData = '';
+                    try {
+                        errorData = await response.json();
+                        Swal.fire('Error', errorData.error || 'Unknown error occurred.', 'error');
+                    } catch {
+                        Swal.fire('Error', 'Failed to process the server response.', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                Swal.fire('Error', 'Failed to fetch data. Please try again later.', 'error');
+            }
+        });
+
+
+        
+        //download all EPA data
+        $('#btnDownloadAllData').on('click', async function() {
+            const token = localStorage.getItem('authToken'); // Get the token from localStorage
+        
+            if (!token) {
+                Swal.fire('Error', 'You are not logged in. Please log in and try again.', 'error');
+                return;
+            }
+        
+            try {
+                const response = await fetch('https://tnd.tntech.edu/api/download-data?year=ALL', {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+        
+                // If the response is OK (status code 200-299)
+                if (response.ok) {
+                    const contentType = response.headers.get('Content-Type');
+        
+                    // Check if the response is CSV (Content-Type should be 'text/csv' or similar)
+                    if (contentType && contentType.includes('text/csv')) {
+                        // Create a blob from the response
+                        const blob = await response.blob();
+        
+                        // Create a download link for the CSV file
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = 'data.csv';  // Set the file name
+                        document.body.appendChild(link);
+                        link.click();  // Trigger the download
+                        document.body.removeChild(link);  // Clean up the link element
+                        Swal.fire('Success', 'CSV file downloaded successfully!', 'success');
+                    } else {
+                        // If the response is not a CSV, handle it as an error  
+                        const errorData = await response.text();
+                        Swal.fire('Error', `Expected CSV but got: ${errorData}`, 'error');
+                    }
+                } else {
+                    // Handle error responses (e.g., 404, 500)
+                    const errorData = await response.json();
+                    Swal.fire('Error', errorData.error || 'Unknown error', 'error');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                Swal.fire('Error', 'Failed to fetch data.', 'error');       
+            }
+        });
+
+
+        
+        
+        
+        
+
+
+    </script>
+</body>
+</html>

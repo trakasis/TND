@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennessee Nutrient Task Force</title>
+    <style>
+        /* Your existing styles */
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+        /* General Styling */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make wrapper take full height */
+        }
+
+        .content {
+            flex-grow: 1; /* Allow the content to grow and push the footer down */
+        }
+
+        /* Header Section */
+        .header {
+            background-image: url("./slideshow/blue-mountian.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 71%; 
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            height: 50px;
+            vertical-align: middle;
+            filter: brightness(110%);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #00274d;
+            padding: 0.75rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 2px solid #000000;
+        }
+
+        .navbar a:hover {
+            background-color: #0f6cc9;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+            flex-grow: 1;
+            flex-wrap: nowrap; /* Prevent wrapping */
+        }
+
+        .card {
+            background-color: #fff;
+            border: 2px solid #0056b3; /* Blue outline */
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            flex: 1; /* Each card will take up equal space */
+            text-align: center;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 250px; /* Ensure the cards don't get too small */
+        }
+
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .card button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #0033a0;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media only screen and (max-width: 1024px) {
+            .card {
+                flex: 1 1 calc(50% - 40px); /* 2 cards per row on medium screens */
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .card {
+                flex: 1 1 calc(100% - 40px); /* 1 card per row on small screens */
+            }
+        }
+
+        /* New Button Styles */
+        .auth-buttons {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+
+        .auth-buttons button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .auth-buttons button:hover {
+            background-color: #003d80;
+        }
+       
+        /* Styling for Navbar Items (Links and Buttons) */
+        .navbar a,
+        .navbar .btn {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 2px solid #000000;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .navbar a:hover,
+        .navbar .btn:hover {
+            background-color: #0f6cc9;
+        }
+
+        /* Optional: remove button-specific styles */
+        .navbar .btn {
+            border: none;
+            outline: none;
+        }
+ 
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header">
+                <div class="task">
+                    <img src="./logos/taskforce.png" alt="Taskforce Logo">
+                </div>
+                <div class="content">
+                    <h1>Tennessee Nutrient Task Force Progress Tracker</h1>
+                </div>
+                <div class="tech">
+                    <img src="./logos/ttu.png" alt="Tennessee Tech Logo">
+                </div>
+
+            </div>
+        </header>
+        <nav class="navbar">
+            <a href="./dashboard.html" class="navbar-item">Home</a>
+            <a href="https://www.tn.gov/content/tn/environment/program-areas/wr-water-resources/nutrient-management-in-tennessee/partnerships/tennessee-nutrient-reduction-task-force.html" target="_blank" class="navbar-item">About</a>
+            <a href="./Tierpage.html" class="navbar-item">Tracking and Data</a>
+            <a href="./partners.html" class="navbar-item">Partners</a>
+            <button id="btnLogin" class="navbar-item btn">Login</button>
+            <button id="btnLogout" class="navbar-item btn">Logout</button>
+            <div id="admin-button-container" class="text-center mb-4"></div>
+        </nav>
+
+        <main class="main-content content">
+            <!-- Card 1 -->
+            <div class="card">
+                <h2>Tier 1</h2>
+                <p>Narrative Metrics: Stories, Presentations, Publications and Reports</p>
+                <button id ="btnTier1" type="button" class="btn btn-primary">Learn More</button>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card">
+                <h2>Tier 2</h2>
+                <p>Qualitative Metrics: Programs and Events</p>
+                <button id ="btnTier2" type="button" class="btn btn-primary">Learn More</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <h2>Tier 3</h2>
+                <p>Quantitative Metrics: Acres & BMPs</p>
+                <button id ="btnTier3" type="button" class="btn btn-primary">Learn More</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <h2>Tier 4</h2>
+                <p>Trending Metrics: Loads and Trends</p>
+                <button id ="btnTier4" type="button" class="btn btn-primary">Learn More</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Tennessee Nutrient Task Force</p>
+        </footer>
+    </div>
+
+        <!-- Scripts here -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $('#btnTier1').on('click', function() {
+                //check if the user is logged in
+                const token = localStorage.getItem('authToken');
+                console.log(token); 
+                if (!token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You must be logged in to view this report.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else {
+                //redirect to the tier 1 page
+                window.location.href = './tier1.html'; 
+                }
+            });
+        
+            $('#btnTier2').on('click', function() {
+                //check if the user is logged in
+                const token = localStorage.getItem('authToken');
+                console.log(token); 
+                if (!token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You must be logged in to view this report.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else {
+                //redirect to the tier 2 page
+                window.location.href = './tier2.html'; 
+                }
+            });
+
+            $('#btnTier3').on('click', function() {
+                //check if the user is logged in
+                const token = localStorage.getItem('authToken');
+                console.log(token); 
+                if (!token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You must be logged in to view this report.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else {
+                //redirect to the tier 3 page
+                window.location.href = './tier3.html'; 
+                }
+            });
+            
+            $('#btnTier4').on('click', function() {
+                //check if the user is logged in
+                const token = localStorage.getItem('authToken');
+                console.log(token); 
+                if (!token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You must be logged in to view this report.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else {
+                //redirect to the tier 4 page
+                window.location.href = './tier4.html'; 
+                }
+            });
+           
+            $('#btnLogin').on('click', function() {
+                //Check if a user is logged in
+                const token = localStorage.getItem('authToken');
+                if (token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You are already logged in.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else{
+                    //redirect to the login page
+                    window.location.href = './Loginpage.html';
+                } 
+            });
+           
+            $('#btnLogout').on('click', async function () {
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "You are not logged in.",
+                        icon: "error"
+                    });
+                    return;
+                }
+                try {
+                    // Make a backend request to clear the session
+                    const response = await fetch('https://tnd.tntech.edu/api/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    if (response.ok) {
+                        // Clear the token from localStorage
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('loggedInEmail');
+                        Swal.fire('Success', 'Logged out successfully', 'success').then(() => {
+                            window.location.href = './Loginpage.html#login-form';
+                        });
+                    } else {
+                        throw new Error("Logout failed on the server.");
+                    }
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire('Error', 'Failed to log out', 'error');
+                }
+            });
+            
+            $(document).ready(async function() {
+                const token = localStorage.getItem('authToken');
+                if (token) {
+                    try {
+                        const response = await fetch('https://tnd.tntech.edu/api/verify-token', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        });
+                        if (!response.ok) throw new Error("Invalid token");
+            
+                    } catch (error) {
+                        // Token is invalid or expired; clear it and redirect to login
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('loggedInEmail');
+                        Swal.fire({
+                            title: "Session expired",
+                            text: "Please log in again.",
+                            icon: "warning"
+                        }).then(() => {
+                            window.location.href = './Loginpage.html';
+                        });
+                    }
+                } else {
+                    // No token, redirect to login
+                    window.location.href = './Loginpage.html';
+                }
+            });
+            
+            //function to fetch the user role to check for the admin button
+            async function fetchUserRole() {
+                try {
+                    const token = localStorage.getItem('authToken');
+                    console.log('Auth token being sent:', token);
+                    const response = await fetch('https://tnd.tntech.edu/api/verify-user-role', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                    });
+                    console.log('Response from user role API:', response);
+                    if (!response.ok) {
+                        console.error('Failed to fetch user role:', response.status, response.statusText);
+                        throw new Error('Failed to fetch user role');
+                    }
+                    const data = await response.json();
+                    console.log('User role data:', data);
+                    return data.role;
+                } catch (error) {
+                    console.error('Error fetching user role:', error);
+                    return null;
+                }
+            }
+            
+            
+            
+            //display the admin page button IF the user is an admin
+            async function displayAdminButton() {
+                const role = await fetchUserRole();
+                console.log('User role fetched:', role);
+                if (role === 'admin_user') {
+                    const adminButtonContainer = document.getElementById('admin-button-container');
+                    if (!adminButtonContainer) {
+                        console.error('Admin button container not found');
+                        return;
+                    }
+                    const button = document.createElement('a');
+                    button.href = './adminpage.html';
+                    button.className = 'btn btn-primary';
+                    button.textContent = 'Admin Page';
+                    adminButtonContainer.appendChild(button);
+                    console.log('Admin button displayed');
+                }
+            }
+            
+
+            //initializing the admin button
+            document.addEventListener('DOMContentLoaded', displayAdminButton);
+        </script> 
+    </body>
+    </html>
+

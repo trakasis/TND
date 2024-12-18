@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennessee Nutrient Task Force Progress Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="./CSS/tier3style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="task">
+            <img src="./logos/taskforce.png" alt="Header Img">
+        </div>
+        <div class="content">
+            <h1>Tennessee Nutrient Task Force Progress Tracker</h1>
+        </div>
+        <div class="tech">
+            <img src="./logos/ttu.png" alt="Header Img">
+        </div>
+    </div>
+    
+    <div class="navbar">
+        <a href="./dashboard.html">Home</a>
+        <a href="https://www.tn.gov/environment/program-areas/wr-water-resources/nutrient-management-in-tennessee.html">About</a>
+        <a href="./Tierpage.html">Tracking and Data</a>
+        <a href="./partners.html">Partners</a>
+        <a href="./Loginpage.html">Login</a>
+    </div>
+
+    <div class="container my-5">
+      <h1 class="text-center mb-4">Tier 3: Quantitative Metrics - Acres & BMPs</h1>
+
+     
+      <div class="row">
+          <div class="col-4 mb-4">
+              <div class="card">
+                  <div class="card-header bg-success text-white">Agriculture Sector</div>
+                  <div class="card-body">
+                      <p><strong>TDEC Issued Permits with Nutrients Monitoring:</strong> 7 confined Animal Feeding Operations</p>
+                      <p><strong>Watershed Plans:</strong></p>
+                      <p><strong>Protected Areas:</strong> N/A</p>
+                      <p><strong>No Till Acres:</strong> Tennessee Department of Agriculture’s 2023 Nutrient Management Report: </p>
+                      <p><strong>Cover Crops Implemented:</strong> Tennessee Department of Agriculture’s 2023 Nutrient Management Report</p>
+                      <p><strong>Treated Areas BMPs/SCMs:</strong></p>
+                      <p><strong>Treated Flows (MGD):</strong></p>
+                      <p><strong>BMP Coverage:</strong></p>
+                      <p><strong>Reduction (lbs):</strong></p>
+                      <canvas id="agricultureChart"></canvas>
+                      <select id="graphSelector" class="form-control" onchange="changeGraph('permitsChart')">
+                        <option value="TDEC Issued Permits with Nutrients Monitoring">TDEC Issued Permits with Nutrients Monitoring</option>
+                        <option value="Industrial Facilities">Industrial Facilities</option>
+                        <option value="Watershed Plans">Watershed Plans</option>
+                        <option value="Protected Areas">Protected Areas</option>
+                        <option value="No Till Acres">No Till Acres</option>
+                        <option value="Cover Crops Implemented">Cover Crops Implemented</option>
+                        <option value="Treated Areas BMPs/SCMs">Treated Areas BMPs/SCMs</option>
+                        <option value="Treated Flows (MGD)">Treated Flows (MGD)</option>
+                        <option value="BMP Coverage">BMP Coverage</option>
+                        <option value="Reduction (lbs)">Reduction (lbs)</option>
+                    </select>
+                    <canvas id="permitsChart"></canvas>
+                  </div>
+              </div>
+          </div>
+
+         
+          <div class="col-4 mb-4">
+              <div class="card">
+                  <div class="card-header bg-info text-white">Municipal Wastewater Sector</div>
+                  <div class="card-body">
+                      <p><strong>TDEC Issued Permits with Nutrients Monitoring:</strong> 141</p>
+                      <p><strong>Watershed Plans:</strong></p>
+                      <p><strong>Protected Areas:</strong> N/A</p>
+                      <p><strong>No Till Acres:</strong> Tennessee Department of Agriculture’s 2023 Nutrient Management Report</p>
+                      <p><strong>Cover Crops Implemented:</strong> Tennessee Department of Agriculture’s 2023 Nutrient Management Report</p>
+                      <p><strong>Treated Areas BMPs/SCMs:</strong></p>
+                      <p><strong>BMP Coverage:</strong></p>
+                      <p><strong>Reduction (lbs):</strong></p>
+                      <canvas id="agricultureChart"></canvas>
+                      <p><strong>Total Average Wastewater Effluent Flow (MGD):</strong></p>
+                      <canvas id="wastewaterChart"></canvas>
+                      <table class="table table-striped data-table">
+                          <thead>
+                              <tr>
+                                  <th>Year</th>
+                                  <th>Wastewater Effluent Flow (MGD)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>2019</td>
+                                  <td>578</td>
+                              </tr>
+                              <tr>
+                                  <td>2020</td>
+                                  <td>640</td>
+                              </tr>
+                              <tr>
+                                  <td>2021</td>
+                                  <td>598</td>
+                              </tr>
+                              <tr>
+                                  <td>2022</td>
+                                  <td>576</td>
+                              </tr>
+                              <tr>
+                                  <td>2023</td>
+                                  <td>489</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+         
+          <div class="col-4 mb-4">
+              <div class="card">
+                  <div class="card-header bg-warning text-dark">Urban Stormwater Sector</div>
+                  <div class="card-body">
+                      <p><strong>TDEC Issued Permits with Nutrients Monitoring</strong></p>
+                      <p><strong>Industrial Facilities:</strong></p>
+                      <p><strong>Watershed Plans:</strong></p>
+                      <p><strong>Protected Areas:</strong><a href="https://tnwrrc-dev.utk.edu/watersheds/urban-waters-report-card/" target="_blank"> Urban Waters Report Card under development</a> <a href="https://myutk.maps.arcgis.com/apps/dashboards/696582b25ad541f3a68d9f4d7244f150" target="_blank"> Tennessee Smart Yards</a></p>
+                      <p><strong>No Till Acres:</strong></p>
+                      <p><strong>Cover Crops Implemented:</strong></p>
+                      <p><strong>Treated Areas BMPs/SCMs:</strong></p>
+                      <p><strong>Treated Flows (MGD):</strong></p>
+                      <p><strong>BMP Coverage:</strong></p>
+                      <p><strong>Reduction (lbs):</strong></p>
+                      <canvas id="stormwaterChart"></canvas>
+                      <select id="stormwaterGraphSelector" class="form-control" onchange="changeStormwaterGraph()">
+                        <option value="TDEC Issued Permits with Nutrients Monitoring">TDEC Issued Permits with Nutrients Monitoring</option>
+                        <option value="Industrial Facilities">Industrial Facilities</option>
+                        <option value="Watershed Plans">Watershed Plans</option>
+                        <option value="Protected Areas">Protected Areas</option>
+                        <option value="No Till Acres">No Till Acres</option>
+                        <option value="Cover Crops Implemented">Cover Crops Implemented</option>
+                        <option value="Treated Areas BMPs/SCMs">Treated Areas BMPs/SCMs</option>
+                        <option value="Treated Flows (MGD)">Treated Flows (MGD)</option>
+                        <option value="BMP Coverage">BMP Coverage</option>
+                        <option value="Reduction (lbs)">Reduction (lbs)</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+
+          
+          <div class="col-6 mb-4">
+              <div class="card">
+                  <div class="card-header bg-primary text-white">Nature-Based Solutions</div>
+                  <div class="card-body">
+                    <p><strong>TDEC Issued Permits with Nutrients Monitoring</strong></p>
+                    <p><strong>Industrial Facilities:</strong></p>
+                    <p><strong>Watershed Plans:</strong> TVA</p>
+                    <p><strong>Protected Areas:</strong></p>
+                    <p><strong>No Till Acres:</strong></p>
+                    <p><strong>Cover Crops Implemented:</strong></p>
+                    <p><strong>Treated Areas BMPs/SCMs:</strong> Survey123 for NBS projects under development</p>
+                    <p><strong>Treated Flows (MGD):</strong></p>
+                    <p><strong>BMP Coverage:</strong></p>
+                    <p><strong>Reduction (lbs):</strong></p>
+                    <canvas id="natureBasedChart"></canvas>
+                    <select id="natureBasedGraphSelector" class="form-control" onchange="changeNatureBasedGraph()">
+                        <option value="TDEC Issued Permits with Nutrients Monitoring">TDEC Issued Permits with Nutrients Monitoring</option>
+                        <option value="Industrial Facilities">Industrial Facilities</option>
+                        <option value="Watershed Plans">Watershed Plans</option>
+                        <option value="Protected Areas">Protected Areas</option>
+                        <option value="No Till Acres">No Till Acres</option>
+                        <option value="Cover Crops Implemented">Cover Crops Implemented</option>
+                        <option value="Treated Areas BMPs/SCMs">Treated Areas BMPs/SCMs</option>
+                        <option value="Treated Flows (MGD)">Treated Flows (MGD)</option>
+                        <option value="BMP Coverage">BMP Coverage</option>
+                        <option value="Reduction (lbs)">Reduction (lbs)</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">General Nutrients</div>
+                <div class="card-body">
+                    <p><strong>TDEC Issued Permits with Nutrients Monitoring</strong></p>
+                    <p><strong>Industrial Facilities:</strong> 8</p>
+                    <p><strong>Watershed Plans:</strong> Falling Water Watershed Plan</p>
+                    <p><strong>Protected Areas:</strong> 248,948 acres in TN state-managed public access lands; 37 federally protected areas New TN State Park: <a href="https://www.tn.gov/content/dam/tn/environment/documents/annual-reports/tdec-annual-report-2023.pdf" target="_blank"> Middle Fork Bottoms</a></p>
+                    <p><strong>No Till Acres:</strong></p>
+                    <p><strong>Cover Crops Implemented:</strong></p>
+                    <p><strong>Treated Areas BMPs/SCMs:</strong></p>
+                    <p><strong>Treated Flows (MGD):</strong></p>
+                    <p><strong>BMP Coverage:</strong></p>
+                    <p><strong>Reduction (lbs):</strong></p>
+                    <canvas id="generalNutrientsChart"></canvas>
+                    <select id="generalNutrientsGraphSelector" class="form-control" onchange="changeGeneralNutrientsGraph()">
+                        <option value="TDEC Issued Permits with Nutrients Monitoring">TDEC Issued Permits with Nutrients Monitoring</option>
+                        <option value="Industrial Facilities">Industrial Facilities</option>
+                        <option value="Watershed Plans">Watershed Plans</option>
+                        <option value="Protected Areas">Protected Areas</option>
+                        <option value="No Till Acres">No Till Acres</option>
+                        <option value="Cover Crops Implemented">Cover Crops Implemented</option>
+                        <option value="Treated Areas BMPs/SCMs">Treated Areas BMPs/SCMs</option>
+                        <option value="Treated Flows (MGD)">Treated Flows (MGD)</option>
+                        <option value="BMP Coverage">BMP Coverage</option>
+                        <option value="Reduction (lbs)">Reduction (lbs)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+    
+        <script>
+      const chartData = {
+        'TDEC Issued Permits with Nutrients Monitoring': [0, 0 ,0, 7, 0],
+        'Industrial Facilities': [],
+        'Watershed Plans': [],
+        'Protected Areas': [],
+        'No Till Acres': [],
+        'Cover Crops Implemented': [],
+        'Treated Areas BMPs/SCMs': [],
+        'Treated Flows (MGD)': [],
+        'BMP Coverage': [],
+        'Reduction (lbs)': []
+      };
+
+      const chartOptions = {
+        type: 'bar',
+        data: {
+          labels: ['2020', '2021', '2022', '2023', '2024'],
+          datasets: [{
+            label: 'Metric Value',
+            data: chartData['TDEC Issued Permits with Nutrients Monitoring'],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      };
+
+      const agricultureChart = new Chart(document.getElementById('agricultureChart'), chartOptions);
+
+    
+      function changeGraph() {
+        const selectedGraph = document.getElementById('graphSelector').value;
+        agricultureChart.data.datasets[0].data = chartData[selectedGraph];
+        agricultureChart.update();
+      }
+      
+    const stormwaterChartData = {
+  'TDEC Issued Permits with Nutrients Monitoring': [0, 0, 0, 0, 0],
+  'Industrial Facilities': [0, 0, 0, 0, 0],
+  'Watershed Plans': [],
+  'Protected Areas': [],
+  'No Till Acres': [],
+  'Cover Crops Implemented': [],
+  'Treated Areas BMPs/SCMs': [],
+  'Treated Flows (MGD)': [],
+  'BMP Coverage': [],
+  'Reduction (lbs)': []
+};
+
+
+const stormwaterChartOptions = {
+  type: 'bar',
+  data: {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
+    datasets: [{
+      label: 'Metric Value',
+      data: stormwaterChartData['TDEC Issued Permits with Nutrients Monitoring'], 
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+
+const stormwaterChart = new Chart(document.getElementById('stormwaterChart'), stormwaterChartOptions);
+
+
+function changeStormwaterGraph() {
+  const selectedGraph = document.getElementById('stormwaterGraphSelector').value;
+  stormwaterChart.data.datasets[0].data = stormwaterChartData[selectedGraph];
+  stormwaterChart.update();
+}
+
+const natureBasedChartData = {
+  'TDEC Issued Permits with Nutrients Monitoring': [],
+  'Industrial Facilities': [],
+  'Watershed Plans': [],
+  'Protected Areas': [],
+  'No Till Acres': [],
+  'Cover Crops Implemented': [],
+  'Treated Areas BMPs/SCMs': [],
+  'Treated Flows (MGD)': [],
+  'BMP Coverage': [],
+  'Reduction (lbs)': []
+};
+
+const natureBasedChartOptions = {
+  type: 'bar',
+  data: {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
+    datasets: [{
+      label: 'Metric Value',
+      data: natureBasedChartData['TDEC Issued Permits with Nutrients Monitoring'], 
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+const natureBasedChart = new Chart(document.getElementById('natureBasedChart'), natureBasedChartOptions);
+
+function changeNatureBasedGraph() {
+  const selectedGraph = document.getElementById('natureBasedGraphSelector').value;
+  natureBasedChart.data.datasets[0].data = natureBasedChartData[selectedGraph];
+  natureBasedChart.update();
+}
+
+const generalNutrientsChartData = {
+  'TDEC Issued Permits with Nutrients Monitoring': [0, 0, 0, 8, 0],
+  'Industrial Facilities': [0, 0, 0, 0, 0],
+  'Watershed Plans': [0, 0, 0, 0, 0],  
+  'Protected Areas': [0, 0, 0, 37, 0],
+  'No Till Acres': [0, 0, 0, 0, 0],
+  'Cover Crops Implemented': [0, 0, 0, 0, 0],
+  'Treated Areas BMPs/SCMs': [0, 0, 0, 0, 0],
+  'Treated Flows (MGD)': [0, 0, 0, 0, 0],
+  'BMP Coverage': [0, 0, 0, 0, 0],
+  'Reduction (lbs)': [0, 0, 0, 0, 0]
+};
+
+// Define chart options
+const generalNutrientsChartOptions = {
+  type: 'bar',
+  data: {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
+    datasets: [{
+      label: 'Metric Value',
+      data: generalNutrientsChartData['TDEC Issued Permits with Nutrients Monitoring'], // Default data
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+// Initialize the chart
+const generalNutrientsChart = new Chart(document.getElementById('generalNutrientsChart'), generalNutrientsChartOptions);
+
+// Function to update the chart based on dropdown selection
+function changeGeneralNutrientsGraph() {
+  const selectedGraph = document.getElementById('generalNutrientsGraphSelector').value;
+  generalNutrientsChart.data.datasets[0].data = generalNutrientsChartData[selectedGraph];
+  generalNutrientsChart.update();
+}
+
+
+
+
+          var ctx = document.getElementById('wastewaterChart').getContext('2d');
+          var wastewaterChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: ['2019', '2020', '2021', '2022', '2023'],
+                  datasets: [{
+                      label: 'Wastewater Effluent Flow (MGD)',
+                      data: [578, 640, 598, 576, 489],
+                      borderColor: 'rgba(0, 123, 255, 1)',
+                      backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                      fill: true
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  plugins: {
+                      legend: {
+                          position: 'top',
+                      },
+                      tooltip: {
+                          callbacks: {
+                              label: function(tooltipItem) {
+                                  return tooltipItem.raw + ' MGD';
+                              }
+                          }
+                      }
+                  }
+              }
+          });
+          
+                
+        </script>
+        
+    </body>
+    </html>
+    </div>
+  </div>

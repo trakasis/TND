@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="slideshow.js"></script> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennessee Nutrient Task Force Progress Tracker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-image: url("./slideshow/blue-mountian.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #2300a3;
+            background-position: 50% 71%; 
+            height: auto;
+            color: white;
+            display: flex;
+            /*flex-direction: column;*/
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .header .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .header img {
+            height: 35px;
+            vertical-align: middle;
+            filter: brightness(110%);
+        }
+        .header h1 {
+            font-size: 35px;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .task {
+            height: auto;
+            width: auto;
+        }
+        .tech {
+            height: auto;
+            width: auto;
+        }
+        
+        .navbar {
+            background-color: #00274d; 
+            padding: 0.75rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 2px solid #000000;
+        }
+
+        .navbar a:hover {
+            background-color: #0f6cc9; 
+        }
+
+        /*slideshow*/
+        * {box-sizing:border-box}
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 2000px;
+            height: auto;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display:  none;
+        } 
+
+        /*set the images to the same dimensions*/
+        .mySlides img{
+            width: auto;
+            height: 600px;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold; 
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+ 
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Position the "previous button" to the left */
+        .prev{
+            left: 0;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Caption text */
+        .text {
+            position: relative;
+            bottom: 20px;
+            left: 0px;
+            background-color: grey;
+            color: white;
+            padding-left: 20px;
+            padding-right: 10px; 
+        }
+
+        /* Number text*/
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        /*on hover will make the dots slightly darker grey*/
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade { 
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        /*sponsors section*/
+        .logos-section {
+            text-align: center;
+            padding: 1rem;
+            background-color: #e6efff; 
+        }
+
+        .logos-section img {
+            height: 60px;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+
+        /*footer with image*/
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #0033a0; 
+            color: white;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+        .footer img {
+            height: 100px;
+            width: 200px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .header .search {
+                width: 80%; 
+                top: 5px; 
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="task">
+            <img src="./logos/taskforce.png" alt="Header Img">
+        </div>
+        <div class="content">
+            <h1>Tennessee Nutrient Task Force Progress Tracker</h1>
+        </div>
+        <div class="tech">
+            <img src="./logos/ttu.png" alt="Header Img">
+        </div>
+    </div>
+
+    <div class="navbar">
+        <a href="./dashboard.html">Home</a>
+        <a href="https://www.tn.gov/environment/program-areas/wr-water-resources/nutrient-management-in-tennessee.html" target="_blank">About</a>
+        <a href="./Tierpage.html">Tracking and Data</a>
+        <a href="./partners.html">Partners</a>
+        <a href="./Loginpage.html">Login</a>
+    </div>
+
+     <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+        <div class="numbertext">1 / 10</div>
+        <img src="./slideshow/tnriver.png" style="width:100%">
+        <div class="text">In 2004, the Tennessee River was named the fourth most polluted river in the United States by the American Rivers conservation group.</div>
+        </div>
+    
+        <div class="mySlides fade">
+        <div class="numbertext">2 / 10</div>
+        <img src="./slideshow/cumberland.png" style="width:100%">
+        <div class="text">The Cumberland River in Tennessee meets EPA standards for drinking, swimming, and fishing.</div>
+        </div>
+    
+        <div class="mySlides fade">
+        <div class="numbertext">3 / 10</div>
+        <img src="./slideshow/hiwassee.png" style="width:100%">
+        <div class="text">The Hiwassee River is designated as a Tennessee State Scenic River, and is well-suited for canoeing, rafting, and learning the basics of whitewater boating.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">4 / 10</div>
+        <img src="./slideshow/clinch.png" style="width:100%">
+        <div class="text">Before being dammed, the Clinch River was a major producer of freshwater mussels and pearls.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">5 / 10</div>
+        <img src="./slideshow/harpeth.png" style="width:100%">
+        <div class="text">The Harpeth River and its tributaries are home to rich freshwater biodiversity, including more than 50 species of fish and 30 species of mussels.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">6 / 10</div>
+        <img src="./slideshow/elk.png" style="width:100%">
+        <div class="text">Upper Elk is a geological marvel: A subterranean network of caves, streams, and waterfalls, including a six-mile stretch in Randolph County where, in dry weather, the river sinks underground.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">7 / 10</div>
+        <img src="./slideshow/caney-fork.png" style="width:100%">
+        <div class="text">The dam at the Caney River has caused low dissolved oxygen (DO) in the tailwater (section of river below a dam), violating Tennessee's water quality criteria and degrading significant trout habitat.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">8 / 10</div>
+        <img src="./slideshow/obed.png" style="width:100%">
+        <div class="text">The free-flowing Obed Wild & Scenic River and its 500-foot-deep gorges offer visitors unspoiled rugged terrain, exceptional waters, and outdoor adventure.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">9 / 10</div>
+        <img src="./slideshow/emory.png" style="width:100%">
+        <div class="text">The Emory River is a river draining a portion of Tennessee's Cumberland Plateau. It flows for just over 46 miles (74 km) from its source near Frozen Head State Park to its mouth along the Clinch River at Kingston, Tennessee.</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">10 / 10</div>
+        <img src="./slideshow/wolf.png" style="width:100%">
+        <div class="text">The Ghost River section of the Wolf River received its name from the loss of river current as the water "flows" through open marshes and bald cypress-water tupelo swamps.</div>
+        </div>
+    
+        <!-- Next and previous buttons --> 
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <script src="slideshow.js"></script>  
+    </div>
+    <br>
+    
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div> 
+
+    <!--sponsor images-->
+    <div class="logos-section">
+        <div class="logos-text">
+            <h3>Our Partners</h3>
+        </div>
+        <img src="./logos/TVA.png" alt="Tennessee Valley Authority Logo">
+        <img src="./logos/USGS.png" alt="US Geological Survey Logo">
+        <img src="./logos/cumberland.png" alt="Cumberland Logo">
+        <img src="./logos/farm.png" alt="Farm Logo">
+        <img src="./logos/kentucky.png" alt="Kentucky Logo">
+        <img src="./logos/mtas.png" alt="MTAS Logo">
+        <img src="./logos/mtsu.png" alt="MTSU Logo">
+        <img src="./logos/murray.png" alt="Murray Logo">
+        <img src="./logos/nature.png" alt="Nature Logo">
+        <img src="./logos/soybean.png" alt="Soybean Logo">
+        <img src="./logos/tdec.png" alt="Tennessee Department of Environment and Conservation Logo">
+        <img src="./logos/tdot.png" alt="Tennessee Department of Transportation Logo">
+        <img src="./logos/tn-ag.png" alt="Tennessee Agriculture Logo">
+        <img src="./logos/tn-chamber.png" alt="Tennessee Chamber Logo">
+        <img src="./logos/tn-municipal.png" alt="Tennessee Municipal Logo">
+        <img src="./logos/tnsa.png" alt="Tennessee State Logo">
+        <img src="./logos/ttu.png" alt="TTU Logo">
+        <img src="./logos/usda.png" alt="USDA Logo">
+        <img src="./logos/utextension.png" alt="UT Extension Logo">
+        <img src="./logos/utility.png" alt="Utility Logo">
+        <img src="./logos/utk.png" alt="UTK Logo">
+        <!-- Add more logos as needed -->
+    </div>
+
+    <div class="footer">
+        <!--<div class="footer-img">
+            <img src="./logos/taskforce.png" alt="Footer Img">
+        </div>-->
+        <p>&copy; 2024 Tennessee Nutrient Task Force</p>
+        <p>&copy; 2024 Tennessee Tech Computer Science Senior Capstone Group</p>
+    </div>
+
+</body>
+</html>
+
+
+

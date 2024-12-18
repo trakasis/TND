@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('../TNDBackend/TNriver.jpeg'); /* Main background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.header {
+    background-image: url("../slideshow/blue-mountian.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #2300a3;
+    background-position: 50% 71%; 
+    height: auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+}
+
+.header .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header img {
+    height: 35px;
+    vertical-align: middle;
+    filter: brightness(110%)
+}
+
+.header h1 {
+    font-size: 35px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #00274d; 
+    padding: 0.1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: 2px solid #000000;
+}
+
+.navbar a:hover {
+    background-color: #0f6cc9; 
+}
+
+.main-content {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.dropdown-container select {
+    width: 150px;
+}
+
+.dropdown-container select:hover {
+    border-color: #004085;
+    transition: border-color 0.3s ease;
+}
+
+.dropdown-container button {
+    width: 110px;
+}
+
+#chartContainer {
+    /* Set display to grid for a 2x2 layout */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 20px; /* Space between charts */
+    margin-top: 20px;
+}
+
+.chart-item canvas {
+    width: 100% !important; /* Ensure the chart takes the full width */
+    height: 250px !important; /* Set a smaller height for the charts */
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../TNDBackend/TNriver.jpeg'); /* Card background image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(300px); /* Apply blur to the background */
+    z-index: 0; /* Ensure it's behind the card content */
+}
+
+.card-body, .card-header {
+    position: relative;
+    z-index: 1; /* Ensure text and charts are above the background */
+    background-color: rgba(255, 255, 255, 0.2); /* Light background with transparency */
+    backdrop-filter: blur(1px); /* Slight blur on the card content itself */
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #0033a0; 
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+.footer img {
+    height: 100px;
+    width: 200px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.btn {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #004085);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0056b3, #002752);
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+@media only screen and (max-width: 768px) {
+    .header h1 {
+        font-size: 1.75rem;
+    }
+
+    #chartContainer {
+        grid-template-columns: 1fr; /* On smaller screens, show 1 chart per row */
+    }
+}

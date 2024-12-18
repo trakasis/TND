@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tennessee Nutrient Task Force</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex-grow: 1;
+        }
+        .header {
+            background-image: url("./slideshow/blue-mountian.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 71%;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            height: 35px;
+            vertical-align: middle;
+            filter: brightness(110%);
+        }
+        .header h1 {
+            font-size: 35px;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .navbar {
+            background-color: #00274d;
+            padding: 0.75rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 2px solid #000000;
+        }
+        .navbar a:hover {
+            background-color: #0f6cc9;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('./slideshow/tnriver.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .form-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #0056b3;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 80px; /* Increased padding */
+            max-width: 800px; /* Increased max-width */
+            width: 80%;
+            text-align: center;
+        }
+        .form-box h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-box input[type="text"],
+        .form-box input[type="password"],
+        .form-box input[type="email"] {
+            width: 100%;
+            padding: 12px; /* Increased padding */
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-box button {
+            width: 100%;
+            padding: 12px; /* Increased padding */
+            background-color: #1E90FF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-box button:hover {
+            background-color: #007ACC;
+        }
+        .toggle-link {
+            display: block;
+            margin-top: 15px;
+            color: #1E90FF;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            background-color: #00274d;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header">
+                <div class="task">
+                    <img src="./logos/taskforce.png" alt="Taskforce Logo">
+                </div>
+                <div class="content">
+                    <h1>Tennessee Nutrient Task Force Progress Tracker</h1>
+                </div>
+                <div class="tech">
+                    <img src="./logos/ttu.png" alt="Tennessee Tech Logo">
+                </div>
+            </div>
+        </header>
+        <nav class="navbar">
+            <a href="./dashboard.html">Home</a>
+            <a href="https://www.tn.gov/content/tn/environment/program-areas/wr-water-resources/nutrient-management-in-tennessee/partnerships/tennessee-nutrient-reduction-task-force.html" target="_blank">About</a>
+            <a href="./Tierpage.html">Tracking and Data</a>
+            <a href="./partners.html">Partners</a>
+            <a href="#login-form">Login</a> <!-- Login button added here -->
+        </nav>
+        <main class="content">
+            <div class="login-container">
+                <div class="form-box">
+                    <h2 id="form-title">Login</h2>
+                    
+                    <!-- Login Form -->
+                    <form id="login-form">
+                        <div class="form-group mt-4">
+                            <label for="txtUsername" class="form-label">Email</label>
+                            <input id="txtUsername" type="text" placeholder="Email" aria-label="Email" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="txtPassword" class="form-label">Password</label>
+                            <input id="txtPassword" type="password" placeholder="Password" aria-label="Password" class="form-control" required>
+                        </div>
+                        <button id="btnLogin" class="btn btn-primary col-12 mt-4" type="submit">Login</button>
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            <a href="#" class="toggle-link" onclick="toggleForm()">Don't have an account? Create Account</a>
+                        </div>
+                    </form>
+                    
+                    <!-- Signup Form -->
+                    <form id="signup-form" style="display: none;">
+                        <div class="form-group mt-4">
+                            <label for="txtSignupEmail" class="form-label">Email</label>
+                            <input id="txtSignupEmail" type="email" placeholder="YourEmail@example.com" aria-label="Email" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="txtSignupPassword" class="form-label">Password</label>
+                            <input id="txtSignupPassword" type="password" placeholder="Password" aria-label="Password" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
+                            <input id="txtConfirmPassword" type="password" placeholder="Confirm Password" aria-label="Confirm Password" class="form-control" required>
+                        </div>
+                        <button id="btnSignup" class="btn btn-primary col-12 mt-4" type="submit">Create Account</button>
+                        <div class="col-12 d-flex justify-content-center mt-3">
+                            <a href="#" class="toggle-link" onclick="toggleForm()">Already have an account? Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>           
+            <footer class="footer">
+                <p>&copy; 2024 Tennessee Nutrient Task Force</p>
+            </footer>          
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const formTitle = document.getElementById('form-title');
+        
+            if (loginForm.style.display === "none") {
+                // Show the login form and update the title
+                loginForm.style.display = "block";
+                signupForm.style.display = "none";
+                formTitle.innerText = "Login";
+            } else {
+                // Show the signup form and update the title
+                loginForm.style.display = "none";
+                signupForm.style.display = "block";
+                formTitle.innerText = "Create Account";
+            }
+        }
+        
+        $('#btnLogin').on('click', async function() {
+            event.preventDefault();
+            
+            // Clear any previous token
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('loggedInEmail');
+        
+            // Input variables
+            let strEmail = $('#txtUsername').val();
+            let strPassword = $('#txtPassword').val();
+        
+            try {
+                const response = await fetch('https://tnd.tntech.edu/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: strEmail,
+                        password: strPassword
+                    })
+                });
+        
+                const data = await response.json();
+        
+                if (response.ok) {
+                    if (data.token) {
+                        // Store the token in localStorage
+                        localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('loggedInEmail', strEmail);
+        
+                        Swal.fire({
+                            title: "Successfully logged in! Enjoy!!!",
+                            text: data.message,
+                            icon: "success"
+                        }).then(function() {
+                            $('#login-form').trigger('reset');
+                            $('#login-form').hide();
+                            // Add a small delay before redirecting
+                            setTimeout(() => {
+                                window.location.href = 'Tierpage.html';
+                            }, 500); // 500ms delay for smooth transition
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Token not received from server.",
+                            icon: "error"
+                        });
+                    }
+                } else {
+                    throw new Error(data.error || 'Login failed. Please try again later.');
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: "Error!",
+                    text: error.message,
+                    icon: "error"
+                });
+            }
+        });
+        
+        
+        //registration function
+        $('#btnSignup').on('click', async function(event) {
+            event.preventDefault();
+            
+            // Input variables
+            let strEmail = $('#txtSignupEmail').val();
+            let strPassword = $('#txtSignupPassword').val();
+            let strConfirmPassword = $('#txtConfirmPassword').val();
+        
+            const reservedUsernames = ['admin', 'root', 'superuser', 'moderator'];
+            let blnError = false;
+            let strError = '';
+        
+            // Form validation
+            if (strEmail === '') {
+                blnError = true;
+                strError = 'Email is required.';
+            } else if (strEmail.length < 6) {
+                blnError = true;
+                strError = 'Email must be valid.';
+            } else if (!strEmail.includes('@') || !strEmail.includes('.')) {
+                blnError = true;
+                strError = 'Email must be valid.';
+            } else if (reservedUsernames.includes(strEmail)) {
+                blnError = true;
+                strError = 'Email is reserved.';
+            } else if (strPassword.length < 6) {
+                blnError = true;
+                strError = 'Password must be at least 6 characters long.';
+            } else if (strPassword !== strConfirmPassword) {
+                blnError = true;
+                strError = 'Passwords do not match. Please try again.';
+            } else if (strPassword === '') {
+                blnError = true;
+                strError = 'Password is required.';
+            }
+        
+            if (blnError === true) {
+                Swal.fire({
+                    title: "Error!",
+                    text: strError,
+                    icon: "error"
+                });
+                return;
+            }
+        
+            try {
+                const response = await fetch('https://tnd.tntech.edu/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: strEmail,
+                        password: strPassword
+                    })
+                });
+        
+                const data = await response.json();
+        
+                if (response.ok) {
+                    Swal.fire({
+                        title: "Successfully signed up! Enjoy!!!",
+                        text: data.message,
+                        icon: "success"
+                    }).then(() => {
+                        // Reset form, switch to login form, and update heading
+                        $('#signup-form').trigger('reset').hide();
+                        $('#login-form').show();
+                        $('#form-title').text('Login');  // Update the heading
+                    });
+        
+                    // Store the logged-in email
+                    localStorage.setItem('loggedInEmail', strEmail);
+        
+                } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: data.error || 'Registration failed. Please try again later.',
+                        icon: "error"
+                    });
+                }
+        
+            } catch (error) {
+                Swal.fire({
+                    title: "Error!",
+                    text: error.message || 'An unexpected error occurred.',
+                    icon: "error"
+                });
+            }
+        });
+                     
+        
+        
+       
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+/* Importing Open Sans font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Global body styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url("../Tier\ 1\ Images/tennessee_river.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Header styling */
+.header {
+    background-image: url("../slideshow/blue-mountian.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #2300a3;
+    background-position: 50% 71%; 
+    height: auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Header content styling */
+.header .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Image styling in header */
+.header img {
+    height: 35px;
+    vertical-align: middle;
+    filter: brightness(110%)
+}
+
+/* Header title styling */
+.header h1 {
+    font-size: 35px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Taskforce and tech logo styling */
+.task {
+    height: auto;
+    width: auto;
+}
+.tech {
+    height: auto;
+    width: auto;
+}
+
+/* Navbar styling */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #00274d; 
+    padding: 0.1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Navbar link styling */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: 2px solid #000000;
+}
+
+/* Navbar link hover effect */
+.navbar a:hover {
+    background-color: #0f6cc9; 
+}
+
+/* Main content section */
+.main-content {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Footer section styling */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #0033a0; 
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+/* Footer image styling */
+.footer img {
+    height: 100px;
+    width: 200px;
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Timeline layout */
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    font-family: "Fira Sans", sans-serif;
+    color: black;
+}
+
+/* Timeline component styling */
+.timeline-component {
+    margin: 0 20px 20px 20px;
+}
+
+/* Background styling for timeline components */
+.timeline-component-bg {
+    padding: 1.5em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Styling for the middle section of the timeline */
+.timeline-middle {
+    position: relative;
+    background: black;
+}
+
+/* Timeline point styling */
+.timeline-point {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 50%;
+}
+
+/* Adjust bottom timeline point position */
+.timeline-point-bottom {
+    top: initial;
+    bottom: 0;
+}
+
+/* Timeline date styling */
+.timeline-date {
+    text-align: right;
+}
+
+/* Timeline content styling */
+.timeline-content {
+    line-height: 1.5;
+}
+
+/* Card component styling */
+.card {
+    background-color: white;
+    margin: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+/* Card body styling */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Card image styling */
+.card-body img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Title styling for tier sections */
+.tier-title h1 {
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Section title styling */
+.section-title {
+    background-color: #00274d;
+    color: white;
+    margin: 5px auto;
+    text-align: center;
+    padding: 1px;
+    position: relative;
+}
+
+/* Rounded square component styling */
+.rounded-square {
+    background-color: #00274d;
+    border-radius: 15px;
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+/* Styling and sizing for conference images */
+.TAUD-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.TAUD-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+.TNSA-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.TNSA-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+.TEN-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.TEN-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+.WPC-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.WPC-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+.AWRA-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.AWRA-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+.AFS-img {
+    border: 2px solid #0000;
+    border-radius: 5px;
+}
+.AFS-img:hover {
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+/* Styling for text in bulleted lists */
+.list-text {
+    position: relative;
+    text-align: left;
+}
+
+/* Styling for hyperlink summaries */
+.summary {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transform-origin: top left;
+    white-space: normal;
+    word-wrap: break-word;
+    pointer-events: none;
+    font-size: small;
+}
+
+/* Adjustments for links */
+.list-link {
+    cursor: pointer;
+}
+.list-link:hover + .summary {
+    display: block;
+}
+
+/* Styling for smaller screens */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .taskforce-meetings {
+        display: flex;
+        padding: 10px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        flex: auto;
+    }
+
+    .summary {
+        padding: 8px;
+        font-size: 14px;
+        width: 100%;
+    }
+}
